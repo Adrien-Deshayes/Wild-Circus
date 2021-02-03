@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\AboutUsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
  * @ORM\Entity(repositoryClass=AboutUsRepository::class)
+ * @Vich\Uploadable
  */
 class AboutUs
 {
@@ -26,6 +30,18 @@ class AboutUs
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="about_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     public function getId(): ?int
     {
@@ -54,5 +70,24 @@ class AboutUs
         $this->image = $image;
 
         return $this;
+    }
+
+    /**
+    * @param mixed $imageFile
+    */
+    public function setImageFile(File $image = null): void
+    {
+        $this->imageFile = $image;
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    /**
+    * @return miexed
+    */
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 }

@@ -6,9 +6,12 @@ use App\Repository\TicketingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=TicketingRepository::class)
+ * @Vich\Uploadable
  */
 class Ticketing
 {
@@ -48,6 +51,18 @@ class Ticketing
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="ticketing")
      */
     private $users;
+
+    /**
+     * @Vich\UploadableField(mapping="ticketing_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     public function __construct()
     {
@@ -147,5 +162,24 @@ class Ticketing
         }
 
         return $this;
+    }
+
+    /**
+    * @param mixed $imageFile
+    */
+    public function setImageFile(File $image = null): void
+    {
+        $this->imageFile = $image;
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    /**
+    * @return miexed
+    */
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 }
