@@ -1,0 +1,23 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+            performance_images:
+                uri_prefix: /uploads/performances
+                upload_destination: '%kernel.project_dir%/public/uploads/performances'
+
+            about_images:
+                uri_prefix: /uploads/abouts
+                upload_destination: '%kernel.project_dir%/public/uploads/abouts'
+
+            logo_images:
+                uri_prefix: /uploads/logos
+                upload_destination: '%kernel.project_dir%/public/uploads/logos'
+
+            ticketing_images:
+                uri_prefix: /uploads/ticketings
+                upload_destination: '%kernel.project_dir%/public/uploads/ticketings'
+
+            galerie_images:
+                uri_prefix: /uploads/galeries
+                upload_destination: '%kernel.project_dir%/public/uploads/galeries'
