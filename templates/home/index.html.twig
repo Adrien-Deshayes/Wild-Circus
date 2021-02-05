@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<!--Start-Perf-->
+<div class="seven">
+  <h1>performances</h1>
+</div>
+<div class="wrap">
+{% for performance in performances %}
+<div class="tile"> 
+    <img src="{{app.request.basepath}}/uploads/performances/{{performance.image}}" alt="Image indisponible" style="width:100%"/>
+    <div class="text">
+    <h1>{{performance.title}}</h1>
+    <h2 class="animate-text">{{performance.description}}</h2>
+    <p class="animate-text"></p>
+  </div>
+</div>
+{% endfor %}
+<!--End-Perf-->
+</div>
+<div class="banniere">
+<h1><a href="{{ path('ticketing')}}"><i class="fas fa-star"></i>Offers<i class="fas fa-star"></i></a></h1>
+</div>
+
+{% endblock %}

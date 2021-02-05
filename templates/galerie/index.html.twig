@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GalerieController!{% endblock %}
+
+{% block body %}
+<div class="seven">
+  <h1>Gallery</h1>
+</div>
+  <section class="cards">  
+{% for galerie in galeries %}   
+
+<a href="#" class="card">
+    <div class="card__image">
+<img src="{{app.request.basepath}}/uploads/galeries/{{galerie.image}}" alt="Image indisponible" style="width:100%"/>
+</div>
+    <div class="content">
+      <div class="card__title">{{galerie.title}}</div>
+      <div class="card__snippet">A bunch of words, wrapped together as if they were actually something other than a rather pedestrian paragraph...</div>
+      <div class="card__readmore">read more</div>  
+    </div>
+     </a>
+
+{% endfor %}
+ </section>  
+
+{% endblock %}
