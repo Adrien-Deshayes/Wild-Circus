@@ -24,7 +24,7 @@ class TicketingCrudController extends AbstractCrudController
         return [
             TextField::new('title', 'Titre'),
             TextareaField::new('description', 'Contenu'),
-            MoneyField::new('price', 'Prix')->setCurrency('EUR'),
+            IntegerField::new('price', 'Prix'),
             IntegerField::new('quantity', 'Quantités'),
             ImageField::new('image')->setBasePath('/uploads/ticketings')->hideOnForm(),
             TextField::new('imageFile')->setFormType(VichImageType::class),

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+<div class="container pt-5">
+        <div id="flash_message" class="alert alert-danger d-none"></div>
+        {{ form_start(contactForm) }}
+        <h2 style="text-align:center; font-size:3em;margin-bottom:1em;margin-top:1em;">Contact</h2>
+        <div class="row align-items-center justify-content-around">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 pb-3">
+                        {{ form_widget(contactForm.firstname) }}
+                    </div>
+                    <div class="col-md-6 col-sm-12 pb-3">
+                        {{ form_widget(contactForm.lastname) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 pb-3">
+                        {{ form_widget(contactForm.email) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 pb-3">
+                        {{ form_widget(contactForm.subject) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 pb-3">
+                        {{ form_widget(contactForm.message) }}
+                    </div>
+                </div>
+                <div class="text-center my-4">
+                    <button class="btn btn-success" type="submit" id="submit-contact"> {{
+                        button_label|default('Send') }}</button>
+                </div>
+            </div>
+            {{ form_end(contactForm) }}
+        </div>
+    </div>
+{% endblock %}

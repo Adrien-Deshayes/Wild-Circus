@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+{% if ticketings | length > 0 %}
+ <div class="bg-light p-3">
+        <h1>Your basket</h1>
+    </div>
+{% endif %}
+    {% if ticketings | length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Offers</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in ticketings %}
+                    <tr>
+                        <td>{{ item.ticketing.id }}</td>
+                        <td>{{ item.ticketing.title }}</td>
+                        <td>{{ item.ticketing.price }}€</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.ticketing.price * item.quantity }}€</td>
+                        <td>
+                            <a href="{{ path('cart_remove', {'id': item.ticketing.id}) }}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4" class="text-right">
+                        Total :
+                    </th>
+                    <th>{{ total }}€</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    {% else %}
+    <div class="bg-light p-3">
+       <p class="fas fa-shopping-cart">Your basket is empty !</p>
+    </div>
+    {% endif %}
+
+{% endblock %}

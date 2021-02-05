@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TicketingController!{% endblock %}
+
+{% block body %}
+<div class="seven">
+  <h1>Offers</h1>
+</div>
+
+<div class="container my-5">
+                    <div class="row">
+{% for ticketing in ticketings %}
+    
+
+                        <div class="col-12 col-lg-4 mobilmt">
+                            <div class="person">
+                                <div class="personimg">
+                                    <img src="{{app.request.basepath}}/uploads/ticketings/{{ticketing.image}}" alt="Image indisponible" style="width:100%"/>
+                                </div>
+                                <div class="persondetail">
+                                    <p class="personunvan">{{ticketing.title}}</p>
+                                </div>
+                                <div class="personcontact">
+                                    <p class="personemail">{{ticketing.description}}</p>
+                                    <p class="persontelefon"></i>{{ticketing.price}}€ / Personne</p>
+                                    <p class="personCV">
+                                        <a href="{{ path('cart_add', { 'id' : ticketing.id }) }}" class="btn btn-success float-right">Add to cart</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+{% endfor %}
+    </div>
+</div>
+{% endblock %}
